@@ -1,0 +1,17 @@
+x=0
+y=0
+theta=0
+array "input" 3
+input[0]=0.5
+input[1]=0.5
+input[2]=90
+deltax=input[0]-x
+deltay=input[1]-y
+rho=sqrt(deltax*deltax+deltay*deltay)
+alpha=-theta+(atan2(deltay,deltax))*(180/3.14)
+beta=-(-input[2])-alpha
+eval alpha
+log "$odox" "$odoy" "$odoth"
+turn alpha
+fwd rho
+turn beta

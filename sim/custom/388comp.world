@@ -1,0 +1,178 @@
+#Simulation environment for the 31388 course
+
+#Include SMR robot model together with basic map and URG laser scanner
+include "smr.inc"
+include "map.inc"
+include "urg-04lx.inc"
+include "guidemark.inc"
+
+interval_sim 10
+
+# configure the GUI window
+window
+( 
+  size [600.000 600.000 ] 
+  center [0.945 1.041] 
+  scale 68.301
+  show_data 1              # 1=on 0=off
+)
+
+# load an environment bitmap
+floorplan
+( 
+  bitmap "competition.png"
+  size [6.000 6.000 0.300]
+  pose [2.000 2.500  0 0]
+  name "385comp"
+)
+
+linemap
+( 
+  bitmap "competition.png"
+  size [2.000 1.000 0.010]
+  pose [2.000 1.500 0 0]
+  name "linemap"
+)
+
+
+
+# create a robot
+smr
+(
+  name "smr0"
+  pose [0.356 0.199  0  89.771]
+)
+
+guidemark
+(
+  name "gmk1"
+  pose [0  1.500  0 180.000]
+  
+  fiducial_return 1
+  fiducial( fov 60 )
+)
+
+
+guidemark
+(
+  name "gmk2"
+  pose [0.050  1.500  0 0]
+  
+  fiducial_return 2
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk3"
+  pose [3.966  1.504  0 180.000]
+  
+  fiducial_return 3
+  fiducial( fov 60 )
+)
+
+
+guidemark
+(
+  name "gmk4"
+  pose [4.025  1.490  0 0]
+  
+  fiducial_return 4
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk5"
+  pose [-0.036  3.498  0 180.000]
+  
+  fiducial_return 5
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk6"
+  pose [0.021  3.496  0 0]
+  
+  fiducial_return 6
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk7"
+  pose [3.964  3.499  0 180.000]
+  
+  fiducial_return 7
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk8"
+  pose [4.015  3.500  0 0]
+  
+  fiducial_return 8
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk9"
+  pose [0.021  4.696  0 0]
+  
+  fiducial_return 9
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk10"
+  pose [3.974  4.704  0 180.000]
+  
+  fiducial_return 10
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk11"
+  pose [0.407  4.949  0 -90.000]
+  
+  fiducial_return 11
+  fiducial( fov 60 )
+)
+guidemark
+(
+  name "gmk12"
+  pose [3.601  4.933  0 -90.000]
+  
+  fiducial_return 12
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk13"
+  pose [1.969  4.006  0 180.000]
+  
+  fiducial_return 13
+  fiducial( fov 60 )
+)
+
+guidemark
+(
+  name "gmk14"
+  pose [2.021  3.995  0 0]
+  
+  fiducial_return 14
+  fiducial( fov 60 )
+)
+
+box
+(
+  name "box1"
+  #between [1.0-3.0 1.0-2.0 0 0]
+  pose [2.020 1.542 0 0]
+)

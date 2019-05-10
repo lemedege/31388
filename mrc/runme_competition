@@ -1,0 +1,409 @@
+
+
+%goto "findball"
+
+%
+% BOX ON THE LOOSE
+%
+
+label "boxontheloose"
+
+laser "laserbox add=newbox x1=0.7 y1=0.7 x2=2.7 y2=1.7"
+
+laser "laserbox detect"
+wait 2
+minx=$l0
+eval $l0
+miny=$l1
+eval $l1
+maxx=$l2
+eval $l2
+maxy=$l3
+eval $l3
+
+sidex=maxx-minx
+sidey=maxy-miny
+
+if(sidey>sidex) "rotatedbox"
+
+centerx=(maxx+minx)/2
+centery=(maxy+miny)/2
+
+eval centerx
+eval centery
+
+correctedx=centerx+0.35
+correctedy=centery+0.38
+
+eval correctedx
+eval correctedy
+
+stringcat "Centrepoint of box is. x. =. " correctedx "and y. =. " correctedy
+speak "$string"
+
+wait 5
+
+boxlength=0.340/2
+boxheigth=0.250/2
+
+xbox0=correctedx-boxlength
+xbox1=correctedx+boxlength
+xbox2=correctedx-boxlength
+xbox3=correctedx+boxlength
+
+ybox0=correctedy-boxheigth
+ybox1=correctedy+boxheigth
+ybox2=correctedy-boxheigth
+ybox3=correctedy+boxheigth
+
+
+stringcat "addline startx=" xbox0 "starty=" ybox0 "endx=" xbox1 "endy=" ybox1 "name='box1'"
+laser "$string"
+
+
+stringcat "addline startx=" xbox1 "starty=" ybox1 "endx=" xbox2 "endy=" ybox2 "name='box2'"
+laser "$string"
+
+
+stringcat "addline startx=" xbox2 "starty=" ybox2 "endx=" xbox3 "endy=" ybox3 "name='box3'"
+laser "$string"
+
+
+stringcat "addline startx=" xbox3 "starty=" ybox3 "endx=" xbox0 "endy=" ybox0 "name='box4'"
+laser "$string"
+
+%laser "addline startx=2.5 starty=0.53 endx=2.7 endy=0.53 name='box1'"
+%laser "addline startx=2.7 starty=0.53 endx=2.7 endy=0.73 name='box2'"
+%laser "addline startx=2.7 starty=0.73 endx=2.5 endy=0.73 name='box3'"
+%laser "addline startx=2.5 starty=0.73 endx=2.5 endy=0.53 name='box4'"
+
+
+wait 0.2
+
+
+%goto "boxontheloose"
+
+goto "gmkarray"
+
+label "rotatedbox"
+
+
+centerx=(maxx+minx)/2
+centery=(maxy+miny)/2
+
+eval centerx
+eval centery
+
+correctedx=centerx+0.38
+correctedy=centery+0.35
+
+eval correctedx
+eval correctedy
+
+stringcat "Centrepoint of box is. x. =. " correctedx "and y. =. " correctedy
+speak "$string"
+
+wait 5
+
+%goto "boxontheloose"
+
+goto "gmkarray"
+
+
+
+%
+% END BOX ON THE LOOSE
+%
+
+%
+% START CONDITIONS
+%
+
+label "gmkarray"
+
+array "gmx" 99
+array "gmy" 99
+array "gmth" 99
+pi=3.1416
+gmx[1]=-0.5
+gmx[2]=0.5
+gmx[3]=3.5
+gmx[4]=4.5
+gmx[5]=-0.5
+gmx[6]=0.4
+gmx[7]=3.5
+gmx[8]=4.55
+gmx[9]=0.55
+gmx[10]=3.55
+gmx[11]=0.54
+gmx[12]=3.55
+gmx[13]=1.21
+gmx[14]=2.79
+
+gmx[15]=0.0
+
+gmx[98]=3.5
+
+gmy[1]=1.5
+gmy[2]=1.5
+gmy[3]=1.5
+gmy[4]=1.5
+gmy[5]=3.5
+gmy[6]=3.5
+gmy[7]=3.5
+gmy[8]=3.5
+gmy[9]=4.65
+gmy[10]=4.65
+gmy[11]=4.65
+gmy[12]=4.65
+gmy[13]=3.94
+gmy[14]=3.94
+
+gmy[15]=0.0
+
+gmy[98]=0.5
+
+gmth[1]=0
+gmth[2]=pi
+gmth[3]=0
+gmth[4]=pi
+gmth[5]=0
+gmth[6]=pi
+gmth[7]=0
+gmth[8]=pi
+gmth[9]=pi
+gmth[10]=0
+gmth[11]=pi/2
+gmth[12]=pi/2
+gmth[13]=0
+gmth[14]=pi
+
+gmth[15]=-pi/2
+
+gmth[98]=-pi/2
+
+laser "localize"
+
+laser "push t='1.0' cmd='localize'"
+
+
+noOfRuns=0
+
+
+gotogmk=98
+
+label "start"
+
+if(noOfRuns>10) "end"
+
+tointstring gotogmk
+stringcat "going to station " "$str" 
+
+
+speak "$string"
+
+
+xs=$odox+0.3
+ys=$odoy+0.3
+
+xe=gmx[gotogmk]
+ye=gmy[gotogmk]
+
+
+label "planroute"
+
+
+
+
+stringcat "findroute startx=" xs "starty=" ys "endx=" xe "endy=" ye
+%laser "findroute startx=0.5 starty=0.5 endx=-0.5 endy=1.5"
+laser "$string"
+wait 0.5
+
+%
+% STORE ROUTE POINTS IN ARRAY
+%
+
+nop=$l4
+nopup=nop+1
+eval nop
+distanceOfRoute=$l5
+eval distanceOfRoute
+
+array "xpoints" 30
+array "ypoints" 30
+array "thpoints" 30
+
+n=nopup
+label "fillarray"
+stringcat "getpoint p=" n
+laser "$string"
+wait 1
+xpoints[n]=$l5
+eval $l5
+eval xpoints[n]
+ypoints[n]=$l6
+eval ypoints[n]
+thpoints[n]=$l7
+eval thpoints[n]
+
+n=n-1
+if(n>-1) "fillarray"
+
+
+
+
+%thpoints[0]=gmth[gotogmk]
+
+%
+% END STORE ROUTE POINTS IN ARRAY
+%
+
+
+
+
+%
+% START DRIVE ARRAY
+%
+
+
+n=nop
+
+firstx=xpoints[nop]
+firsty=ypoints[nop]
+firsttheta=thpoints[nop]
+
+laser "localize getonly"
+firstangle=firsttheta-$odoth+$l2
+firstangle=normalizeanglerad(firstangle)
+ignoreobstacles
+turn firstangle "rad"
+
+label "drivearray"
+
+runx=xpoints[n]
+runy=ypoints[n]
+runtheta=thpoints[n]
+
+eval runx
+eval runy
+eval runtheta
+
+%wait 5
+
+%ignoreobstacles
+drivew runx runy runtheta "rad":($targetdist < 0.2)
+eval $targetdist
+
+n=n-1
+eval n
+if(n>-1) "drivearray"
+
+ignoreobstacles
+fwd 0.25
+laser "localize getonly"
+gmkangle=gmth[gotogmk]-$odoth+$l2
+gmkangle=normalizeanglerad(gmkangle)
+ignoreobstacles
+turn gmkangle "rad"
+
+stop
+
+%
+% READ GUIDEMARK 
+%
+ringsofhell=0
+
+if(gotogmk==98) "findball"
+if(gotogmk==15) "end"
+
+label "readguidemark"
+
+get "guidemark"
+wait 1
+%gotogmk=$fiducialid
+gotogmk=$guidemarkok
+eval gotogmk
+%wait 5
+if(gotogmk<1) "guidemarkslayer"
+
+noOfRuns=noOfRuns+1
+eval noOfRuns
+wait 1
+goto "start"
+
+%
+%TRY TO FIND GUIDEMARK
+%
+label "guidemarkslayer"
+
+switch(ringsofhell)
+fwd -0.03
+case 1
+fwd -0.03
+case 2
+fwd -0.03
+case 3
+fwd -0.03
+case 4
+turn 5
+case 5
+turn -10
+case 6
+turn 15
+case 7
+turn -20
+case 8
+turn 25
+case 9
+turn -30
+case 10
+turn 30
+case 11
+ringsofhell=0
+endswitch
+ringsofhell=ringsofhell+1
+goto "readguidemark"
+
+
+%
+%Find ball
+%
+label "findball"
+
+speak "find balls"
+
+vision "imageget"
+wait 1
+vision "bf7 img=18 smrcl"
+wait 0.5
+eval $vis4
+tointstring $vis4
+stringcat "there are. " "$str" "red balls"
+speak "$string"
+wait 5
+vision "bf7 img=18 blue smrcl"
+wait 0.5
+eval $vis4
+tointstring $vis4
+stringcat "there are. " "$str" "blue balls"
+speak "$string"
+wait 5
+
+%goto "findball"
+
+stop
+gotogmk=15
+
+goto "start"
+
+
+label "end"
+
+ignoreobstacles
+turn -45
+ignoreobstacles
+fwd 0.2
+
+
+stop

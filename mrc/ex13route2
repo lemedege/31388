@@ -1,0 +1,130 @@
+laser "resetplanner"
+
+laser "addpoint pno=1 x=-1.5 y=-1.5"
+laser "addpoint pno=2 x=0 y=-1.5"
+laser "addpoint pno=3 x=1.5 y=-1.5"
+
+laser "addpoint pno=4 x=-1.5 y=-0.75"
+laser "addpoint pno=5 x=-0.75 y=-0.75"
+laser "addpoint pno=6 x=0 y=-0.75"
+laser "addpoint pno=7 x=1.4 y=-0.75"
+
+laser "addpoint pno=8 x=-1.5 y=0"
+laser "addpoint pno=9 x=-0.75 y=0"
+laser "addpoint pno=10 x=0.75 y=0"
+
+laser "addpoint pno=11 x=-1.5 y=0.75"
+laser "addpoint pno=12 x=0 y=0.75"
+
+
+laser "addpoint pno=13 x=-1.5 y=1.5"
+laser "addpoint pno=14 x=0 y=1.5"
+laser "addpoint pno=15 x=0.75 y=1.5"
+laser "addpoint pno=16 x=1.5 y=1.5"
+
+
+laser "addcon pno1=1 pno2=2"
+laser "addcon pno1=2 pno2=1"
+laser "addcon pno1=1 pno2=4"
+laser "addcon pno1=4 pno2=1"
+laser "addcon pno1=2 pno2=3"
+laser "addcon pno1=3 pno2=2"
+laser "addcon pno1=2 pno2=6"
+laser "addcon pno1=6 pno2=2"
+laser "addcon pno1=4 pno2=5"
+laser "addcon pno1=5 pno2=4"
+laser "addcon pno1=5 pno2=9"
+laser "addcon pno1=9 pno2=5"
+laser "addcon pno1=6 pno2=7"
+laser "addcon pno1=7 pno2=6"
+laser "addcon pno1=7 pno2=16"
+laser "addcon pno1=16 pno2=7"
+laser "addcon pno1=15 pno2=16"
+laser "addcon pno1=16 pno2=15"
+laser "addcon pno1=10 pno2=15"
+laser "addcon pno1=15 pno2=10"
+laser "addcon pno1=9 pno2=10"
+laser "addcon pno1=10 pno2=9"
+laser "addcon pno1=8 pno2=9"
+laser "addcon pno1=9 pno2=8"
+laser "addcon pno1=8 pno2=11"
+laser "addcon pno1=11 pno2=8"
+laser "addcon pno1=11 pno2=12"
+laser "addcon pno1=12 pno2=11"
+laser "addcon pno1=12 pno2=14"
+laser "addcon pno1=14 pno2=12"
+laser "addcon pno1=13 pno2=14"
+laser "addcon pno1=14 pno2=13"
+
+laser "calculatecost"
+
+laser "findroute startx=1.5 starty=-1.5 endx=-1.5 endy=1.5"
+
+wait 0.5
+
+nop=$l4
+nopup=nop+1
+eval nop
+distanceOfRoute=$l5
+eval distanceOfRoute
+
+%laser "getpoint p=1"
+%eval $l5
+%x_route=$l5
+%eval $l6
+%y_route=$l6
+%eval $l7
+%th_route=$l7
+
+array "xpoints" nopup
+array "ypoints" nopup
+array "thpoints" nopup
+
+
+n=nopup
+label "fillarray"
+stringcat "getpoint p=" n
+laser "$string"
+wait 0.2
+xpoints[n]=$l5
+eval xpoints[n]
+ypoints[n]=$l6
+eval ypoints[n]
+thpoints[n]=$l7
+eval thpoints[n]
+
+n=n-1
+if(n>-1) "fillarray"
+
+%targethere
+eval $odox
+eval $odoy
+eval $odoth
+drive 0 -1.5 180:($targetdist< 0.1)
+
+goto "end"
+
+n=nop
+label "drivearray"
+
+eval n
+
+x=xpoints[n-1]
+eval x
+y=ypoints[n-1]
+eval y
+th=thpoints[n]
+eval th
+
+drive x y th "rad":($targetdist<0)
+
+n=n-1
+if(n>-1) "drivearray"
+
+
+%label "orient"
+%turn th "rad"
+%goto "drivearray"
+
+label "end"
+stop

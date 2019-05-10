@@ -1,0 +1,15 @@
+label "findball"
+vision "bf7 blue img=18 smrcl"
+wait 1
+eval $vis1
+if ($vis1<0.5) "findball"
+ah=atan2($vis3,$vis2)
+eval ah
+ad=sqrt($vis3*$vis3+$vis2*$vis2)
+eval ad
+ah=ah + $odoth
+eval ah
+%drive $odox $odoy ah "rad" : ($drivendist > ad)
+drive $odox $odoy ah "rad" : ($targetdist < -ad)
+eval $targetdist
+stop

@@ -1,0 +1,17 @@
+
+wait 1
+eval $l0
+eval $l1
+eval $l2
+length=1
+laser "addline startx=0 starty=0 endx=length endy=0 name='bottom'"
+laser "addline startx=0 starty=length endx=length endy=length name='top'"
+laser "addline startx=0 starty=0 endx=0 endy=length name='left'"
+laser "addline startx=length starty=0 endx=length endy=length name='right'"
+laser "setInitPose x=0.15 y=0.15 th=0"
+laser "setInitCov Cx=0.04 Cy=0.04 Cth=0.04"
+laser "localize"
+eval $l0
+eval $l1
+eval $l2
+stop

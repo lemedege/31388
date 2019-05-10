@@ -1,0 +1,17 @@
+
+label "start"
+wait 1
+eval $l0
+eval $l1
+eval $l2
+length=1
+laser "laserbox add=newbox x1=0.7 y1=0.7 x2=2.7 y2=1.7"
+
+laser "laserbox detect"
+wait 2
+eval $l0
+eval $l1
+eval $l2
+eval $l3
+goto "start"
+stop

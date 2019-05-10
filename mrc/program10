@@ -1,0 +1,19 @@
+followline "bm" @v0.4 :($irdistfrontmiddle < 0.45)
+eval $fiducialid
+n = $fiducialid
+switch(n) 
+case 1
+turn 90
+drive :($crossingblackline)
+turn -90
+fwd 0.45
+case 2
+turn -90
+drive :($crossingblackline)
+turn 90
+fwd 0.45
+case 3
+turn 180
+followline "bm" @v0.1 :($drivendist > 1)
+endswitch
+stop

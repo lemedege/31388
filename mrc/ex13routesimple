@@ -1,0 +1,31 @@
+laser "resetplanner"
+laser "addpoint pno=1 x=-1.5 y=-1.5"
+laser "addpoint pno=2 x=0 y=-1.5"
+laser "addpoint pno=3 x=1.5 y=-1.5"
+
+wait 0.1
+
+
+
+laser "addcon pno1=1 pno2=2"
+laser "addcon pno1=1 pno2=4"
+laser "addcon pno1=2 pno2=3"
+laser "addcon pno1=2 pno2=6"
+
+
+
+wait 0.1
+laser "calculatecost"
+
+wait 0.1
+laser "findroute startx=1.5 starty=-1.5 endx=-1.5 endy=1.5"
+
+wait 1
+
+eval $l4
+eval $l5
+
+laser "getpoint p=1"
+eval $l5
+eval $l6
+eval $l7

@@ -1,0 +1,416 @@
+
+
+
+
+laser "addline startx=0 starty=0 endx=1.9 endy=0 name='bottom1'"
+laser "addline startx=2.1 starty=0 endx=4 endy=0 name='bottom2'"
+
+laser "addline startx=0 starty=0 endx=0 endy=1.9 name='leftbottom'"
+laser "addline startx=0 starty=5 endx=0 endy=3.1 name='lefttop'"
+
+laser "addline startx=4 starty=0 endx=4 endy=1.9 name='rightbottom'"
+laser "addline startx=4 starty=5 endx=4 endy=3.1 name='righttop'"
+
+laser "addline startx=0 starty=5 endx=1.9 endy=5 name='top1'"
+laser "addline startx=2.1 starty=5 endx=4 endy=5 name='top2'"
+
+laser "addline startx=1.7 starty=2.5 endx=1.7 endy=3.1 name='maze1'"
+laser "addline startx=1.7 starty=3.1 endx=0.9 endy=3.1 name='maze2'"
+laser "addline startx=0.9 starty=3.1 endx=0.9 endy=4.3 name='maze3'"
+laser "addline startx=0.9 starty=4.3 endx=3.1 endy=4.3 name='maze4'"
+laser "addline startx=3.1 starty=4.3 endx=3.1 endy=3.1 name='maze5'"
+laser "addline startx=3.1 starty=3.1 endx=2.3 endy=3.1 name='maze6'"
+laser "addline startx=2.3 starty=3.1 endx=2.3 endy=2.5 name='maze7'"
+laser "addline startx=1.5 starty=3.7 endx=2.5 endy=3.7 name='maze8'"
+laser "addline startx=2.0 starty=4.3 endx=2.0 endy=3.7 name='maze9'"
+
+laser "setInitPose x=0.3 y=0.30 th=0"
+laser "setInitCov Cx=0.04 Cy=0.04 Cth=0.04"
+laser "localize"
+
+laser "resetplanner"
+
+laser "addpoint pno=1 x=0.5 y=0.5"
+laser "addpoint pno=2 x=3.5 y=0.5"
+laser "addpoint pno=3 x=-0.5 y=1.5"
+
+
+laser "addpoint pno=4 x=0.5 y=1.5"
+laser "addpoint pno=5 x=3.5 y=1.5"
+laser "addpoint pno=6 x=4.5 y=1.5"
+laser "addpoint pno=7 x=-0.5 y=2.2"
+
+laser "addpoint pno=8 x=0.5 y=2.2"
+laser "addpoint pno=9 x=1.5 y=2.2"
+laser "addpoint pno=10 x=2 y=2.2"
+
+laser "addpoint pno=11 x=2.5 y=2.2"
+laser "addpoint pno=12 x=3.5 y=2.2"
+
+
+laser "addpoint pno=13 x=4.5 y=2.2"
+laser "addpoint pno=14 x=-0.5 y=3.5"
+laser "addpoint pno=15 x=0.5 y=3.5"
+
+laser "addpoint pno=16 x=1.28 y=3.45"
+
+laser "addpoint pno=17 x=2 y=3.32"
+laser "addpoint pno=18 x=2.72 y=3.45"
+laser "addpoint pno=19 x=3.5 y=3.5"
+laser "addpoint pno=20 x=4.5 y=3.5"
+
+laser "addpoint pno=21 x=1.21 y=3.94"
+laser "addpoint pno=22 x=2.79 y=3.94"
+laser "addpoint pno=23 x=0.5 y=4.6"
+laser "addpoint pno=24 x=3.5 y=4.6"
+
+
+laser "addcon pno1=1 pno2=2"
+laser "addcon pno1=2 pno2=1"
+
+laser "addcon pno1=1 pno2=4"
+laser "addcon pno1=4 pno2=1"
+
+laser "addcon pno1=2 pno2=5"
+laser "addcon pno1=5 pno2=2"
+
+laser "addcon pno1=4 pno2=8"
+laser "addcon pno1=8 pno2=4"
+
+laser "addcon pno1=7 pno2=8"
+laser "addcon pno1=8 pno2=7"
+
+laser "addcon pno1=8 pno2=9"
+laser "addcon pno1=9 pno2=8"
+
+laser "addcon pno1=7 pno2=3"
+laser "addcon pno1=3 pno2=7"
+
+laser "addcon pno1=7 pno2=14"
+laser "addcon pno1=14 pno2=7"
+
+laser "addcon pno1=8 pno2=15"
+laser "addcon pno1=15 pno2=8"
+
+laser "addcon pno1=15 pno2=23"
+laser "addcon pno1=23 pno2=15"
+
+laser "addcon pno1=23 pno2=24"
+laser "addcon pno1=24 pno2=23"
+
+laser "addcon pno1=19 pno2=24"
+laser "addcon pno1=24 pno2=19"
+
+laser "addcon pno1=12 pno2=19"
+laser "addcon pno1=19 pno2=12"
+
+laser "addcon pno1=5 pno2=12"
+laser "addcon pno1=12 pno2=5"
+
+laser "addcon pno1=11 pno2=12"
+laser "addcon pno1=12 pno2=11"
+
+laser "addcon pno1=12 pno2=13"
+laser "addcon pno1=13 pno2=12"
+
+laser "addcon pno1=12 pno2=5"
+laser "addcon pno1=5 pno2=12"
+
+laser "addcon pno1=13 pno2=20"
+laser "addcon pno1=20 pno2=13"
+
+laser "addcon pno1=6 pno2=13"
+laser "addcon pno1=13 pno2=6"
+
+laser "addcon pno1=10 pno2=11"
+laser "addcon pno1=11 pno2=10"
+
+laser "addcon pno1=9 pno2=10"
+laser "addcon pno1=10 pno2=9"
+
+laser "addcon pno1=10 pno2=17"
+laser "addcon pno1=17 pno2=10"
+
+laser "addcon pno1=17 pno2=16"
+laser "addcon pno1=16 pno2=17"
+
+laser "addcon pno1=17 pno2=18"
+laser "addcon pno1=18 pno2=17"
+
+laser "addcon pno1=22 pno2=18"
+laser "addcon pno1=18 pno2=22"
+
+laser "addcon pno1=21 pno2=16"
+laser "addcon pno1=16 pno2=21"
+
+laser "calculatecost"
+
+
+%
+% END OF WORLDBUILDING
+%
+
+%
+% START CONDITIONS
+%̈́
+
+
+array "gmx" 15
+array "gmy" 15
+array "gmth" 15
+pi=3.1416
+gmx[1]=-0.5
+gmx[2]=0.5
+gmx[3]=3.5
+gmx[4]=4.5
+gmx[5]=-0.5
+gmx[6]=0.5
+gmx[7]=3.5
+gmx[8]=4.5
+gmx[9]=0.5
+gmx[10]=3.5
+gmx[11]=0.5
+gmx[12]=3.5
+gmx[13]=1.25
+gmx[14]=2.75
+
+gmy[1]=1.5
+gmy[2]=1.5
+gmy[3]=1.5
+gmy[4]=1.5
+gmy[5]=3.5
+gmy[6]=3.5
+gmy[7]=3.5
+gmy[8]=3.5
+gmy[9]=4.5
+gmy[10]=4.5
+gmy[11]=4.5
+gmy[12]=4.5
+gmy[13]=4.0
+gmy[14]=4.0
+
+gmth[1]=0
+gmth[2]=pi
+gmth[3]=0
+gmth[4]=pi
+gmth[5]=0
+gmth[6]=pi
+gmth[7]=0
+gmth[8]=pi
+gmth[9]=pi
+gmth[10]=0
+gmth[11]=pi/2
+gmth[12]=pi/2
+gmth[13]=0
+gmth[14]=pi
+
+
+
+noOfRuns=0
+
+
+gotogmk=13
+
+label "start"
+
+if(noOfRuns>10) "end"
+
+
+
+
+xs=$odox+0.3
+ys=$odoy+0.3
+
+xe=gmx[gotogmk]
+ye=gmy[gotogmk]
+
+
+label "planroute"
+
+%xs=0.5
+%ys=0.5
+
+% ------ Punkt 9 ------
+%xe=gmx[9]
+%ye=gmy[9]
+
+% ------ Punkt 10 ------
+%xe=gmx[10]
+%ye=gmy[10]
+
+% ------ Punkt 11 ------
+%xe=gmx[11]
+%ye=gmy[11]
+
+% ------ Punkt 13 ------
+%xe=gmx[13]
+%ye=gmy[13]
+
+% ------ Punkt 14 ------
+%xe=gmx[14]
+%ye=gmy[14]
+
+
+%xe=1.25
+%ye=4.0
+
+
+stringcat "findroute startx=" xs "starty=" ys "endx=" xe "endy=" ye
+%laser "findroute startx=0.5 starty=0.5 endx=-0.5 endy=1.5"
+laser "$string"
+wait 0.5
+
+%
+% STORE ROUTE POINTS IN ARRAY
+%
+
+nop=$l4
+nopup=nop+1
+eval nop
+distanceOfRoute=$l5
+eval distanceOfRoute
+
+array "xpoints" nopup
+array "ypoints" nopup
+array "thpoints" nopup
+
+n=nopup
+label "fillarray"
+stringcat "getpoint p=" n
+laser "$string"
+wait 0.2
+xpoints[n]=$l5
+eval xpoints[n]
+ypoints[n]=$l6
+eval ypoints[n]
+thpoints[n]=$l7
+eval thpoints[n]
+
+n=n-1
+if(n>-1) "fillarray"
+
+
+
+
+thpoints[0]=gmth[gotogmk]
+
+%
+% END STORE ROUTE POINTS IN ARRAY
+%
+
+
+
+
+%
+% START DRIVE ARRAY
+%
+
+
+n=nop
+label "drivearray"
+
+x=$odox
+y=$odoy
+theta=$odoth
+
+laser "localize"
+wait 0.2
+
+eval $l0
+eval $l1
+eval $l2
+
+
+
+x=x-$l0
+y=y-$l1
+theta=theta-$l2
+
+array "input" 3
+input[0]=xpoints[n]
+input[1]=ypoints[n]
+input[2]=thpoints[n]
+eval input[2]
+
+deltax=input[0]-x
+deltay=input[1]-y
+rho=sqrt(deltax*deltax+deltay*deltay)
+alpha=-theta+(atan2(deltay,deltax))
+betan=-(input[2])-alpha
+beta=-theta-alpha
+betaD = input[2] + beta
+
+ignoreobstacles
+turn alpha "rad"
+ignoreobstacles
+fwd rho
+
+%eval alpha
+%eval theta 
+%eval input[2]
+%eval beta
+
+if(theta==input[2]) "nobeta"
+ignoreobstacles
+turn betaD "rad"
+label "nobeta"
+
+%laser "localize"
+%wait 0.2
+
+%eval $l0
+%eval $l1
+%eval $l2
+
+n=n-1
+if(n>-1) "drivearray"
+ignoreobstacles
+jeff = input[2] - theta
+eval input[2]
+eval theta
+eval jeff
+%turn jeff "rad"
+
+%
+% READ GUIDEMARK 
+%
+ringsofhell=0
+
+label "readguidemark"
+
+get “guidemark”
+wait 1
+gotogmk=$fiducialid
+eval gotogmk
+wait 3
+if(gotogmk<1) "guidemarkslayer"
+
+
+noOfRuns=noOfRuns+1
+
+goto "start"
+
+%
+%TRY TO FIND GUIDEMARK
+%
+label "guidemarkslayer"
+
+switch(ringsofhell)
+fwd -0.1
+case 1
+turn 10
+case 2
+turn -20
+case 3
+turn 50
+case 4
+turn -60
+case 5
+ringsofhell=0
+endswitch
+ringsofhell=ringsofhell+1
+goto "readguidemark"
+
+
+label "end"
+stop

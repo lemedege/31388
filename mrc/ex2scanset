@@ -1,0 +1,16 @@
+laser "scanset logopen"
+laser "scanset log=1"
+laser "odopose log=true"
+wait 1
+fwd 1
+turn -90
+fwd 1
+turn -90
+fwd 1 
+turn -90
+fwd 1
+turn -90
+laser "scanset logclose"
+laser "odopose log=false"
+turn 90
+stop

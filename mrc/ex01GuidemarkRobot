@@ -1,0 +1,20 @@
+label "start"
+get "guidemark"
+wait 2
+switch($guidemarkok)
+goto "start"
+case 1
+fwd 1
+case 2
+fwd 0.2
+case 3
+fwd 0.3
+case 4
+fwd 0.4
+case 5
+fwd 2.5
+case 6
+fwd 3
+endswitch
+goto "start"
+stop

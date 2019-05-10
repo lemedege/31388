@@ -1,0 +1,35 @@
+followline "bl" @v0.4 :($crossingblackline)
+fwd 0.2
+turn-90
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+turn 90
+followline "bm" @v0.4 :($crossingblackline)
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "br" @v0.4 :($drivendist > 0.2)
+eval $fiducialid
+n = $fiducialid
+switch(n) 
+case 1
+followline "bm" @v0.4 :($crossingblackline)
+case 2
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "bm" @v0.4 :($crossingblackline)
+case 3
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "bm" @v0.4 :($crossingblackline)
+case 4
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "bm" @v0.4 :($crossingblackline)
+fwd 0.2
+followline "bm" @v0.4 :($crossingblackline)
+endswitch
+stop

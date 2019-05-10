@@ -1,0 +1,39 @@
+label "passball"
+vision "bf7 img=18 smrcl"
+startx = $odox
+starty = $odoy
+startth = $odoth
+wait 1
+eval $vis1
+if ($vis1<0.5) "passball"
+ah=atan2($vis3+0.4,$vis2)
+ad=sqrt($vis3*$vis3+$vis2*$vis2)
+ah=ah + $odoth
+drive $odox $odoy ah "rad" : ($targetdist < -ad)
+%turnr 0.4 -180 
+fwd 0.1
+stop
+label "passballright"
+vision "bf7 img=18 smrcl"
+wait 1
+eval $vis1
+if ($vis1<0.5) "passballright"
+ah=atan2($vis3-0.4,$vis2)
+ad=sqrt($vis3*$vis3+$vis2*$vis2)
+ah=ah + $odoth
+drive $odox $odoy ah "rad" : ($targetdist < -ad)
+turnr 0.5 230
+stop
+label "passballleft"
+vision "bf7 img=18 smrcl"
+wait 1
+eval $vis1
+if ($vis1<0.5) "passballleft"
+ah=atan2($vis3+0.4,$vis2)
+ad=sqrt($vis3*$vis3+$vis2*$vis2)
+ah=ah + $odoth
+drive $odox $odoy ah "rad" : ($targetdist < -ad)
+turnr 0.5 -230
+stop
+goto "passballright"
+stop

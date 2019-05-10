@@ -1,0 +1,14 @@
+followline "bm" @v0.1 :($irdistfrontright <0.4)|($irdistfrontleft <0.4)|($drivendist > 1)
+
+switch($condition) %1,2 or 3
+
+case 1
+  followline "br" @v0.1 :($drivendist > 1)
+case 2
+  followline "bl" @v0.1 :($drivendist > 1)
+case 3
+  turn 180
+  followline "bm" @v0.1 :($drivendist > 1)
+endswitch
+
+stop

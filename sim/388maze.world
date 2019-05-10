@@ -1,0 +1,44 @@
+#Simulation environment for the 31388 course
+
+#Include SMR robot model together with basic map and URG laser scanner
+include "smr.inc"
+include "map.inc"
+include "urg-04lx.inc"
+
+#Simulation time-steps and steps in real-time (1:1)
+interval_sim 10
+
+# configure the GUI window
+window
+( 
+  size [ 800.000 600.000 ] 
+  center [-0.010 -0.040] 
+  scale 125
+  show_data 1              # 1=on 0=off
+)
+
+# load an environment bitmap
+floorplan
+( 
+  bitmap "388maze.png"
+  size [3.75 3.75 0.30]
+  pose [0 0 0 0]
+  name "maze"
+)
+
+# load an line bitmap
+linemap
+( 
+  bitmap "388maze.png"
+  size [3.75 3.75 0.00]
+  pose [0 0 0 0]
+  name "linemap"
+)
+
+# create a robot
+smr
+(
+  name "smr0"
+  pose [1.40 -1.500 0.0 0.000]
+)
+

@@ -1,0 +1,28 @@
+label "init"
+N=4
+turn 45
+drive:($drivendist > 0.8)
+turn 135
+n=0
+
+label "loopstart"
+if (n==N) "end"
+
+
+label "topleft"
+drive -0.5 0.5 -90 : ($drivendist >0.5)
+
+label "bottomleft"
+drive -0.5 -0.5 0 : ($drivendist >0.5)
+
+label "bottomright"
+drive 0.5 -0.5 90 : ($drivendist >0.5)
+
+label "topright"
+drive 0.5 0.5 180 : ($drivendist >0.5)
+
+n=n+1
+goto "loopstart"
+
+label "end"
+stop
