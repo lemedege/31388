@@ -1,2 +1,3 @@
 # 31388
-Her er en ændring til igen
+Advanced Autonomous Robots DTU 2019
+SMR-CL program called runme_competition completes maze
